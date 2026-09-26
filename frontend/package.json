@@ -1,0 +1,29 @@
+{
+  "name": "changeguard-ai-frontend",
+  "version": "1.0.0",
+  "description": "ChangeGuard AI Frontend",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext js,jsx"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "axios": "^1.7.2",
+    "date-fns": "^3.6.0",
+    "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.3"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true
+  }
+}
