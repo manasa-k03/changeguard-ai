@@ -228,29 +228,34 @@ node test-server.js  # runs 12 smoke tests and exits
 
 ---
 
-## Deployment
+## **Deployment**
 
-### Deploy to Render
+### Frontend — Vercel
 
-1. Push this repository to GitHub (public).
-2. Go to https://render.com → **New → Blueprint** → connect your repo.
-3. Render reads `render.yaml` and creates both services automatically.
-4. After creation, set the following **environment variables** in the Render dashboard:
+The React frontend is deployed as a Vite application on Vercel.
 
-**Backend service** (`changeguard-ai-backend`):
-- `JWT_SECRET` — generate with `openssl rand -hex 64`
-- `OPENAI_API_KEY` — your OpenAI key (optional for demo)
-- `FRONTEND_URL` — `https://changeguard-ai-frontend.onrender.com`
+### Backend — Render
 
-**Frontend service** (`changeguard-ai-frontend`):
-- `VITE_API_URL` — `https://changeguard-ai-backend.onrender.com`
+The Node.js/Express backend is deployed as a Web Service on Render.
 
-5. Trigger a deploy. Both services will build and start.
+Required backend environment variables:
 
-> **Note**: Render free tier SQLite data does **not** persist across deploys (ephemeral disk). For persistent storage on free tier, upgrade to a paid instance or use a hosted database like Neon (PostgreSQL). Change `knex` client from `sqlite3` to `pg` and update the connection string.
+- `JWT_SECRET` — a strong secret used for JWT authentication.
+- `OPENAI_API_KEY` — optional; enables OpenAI-powered analysis. Demo mode works without it.
+- `FRONTEND_URL` — the public Vercel frontend URL.
 
----
+Required frontend environment variable:
 
+- `VITE_API_URL` — the public Render backend URL.
+
+### Local Development
+
+For local development, run the backend and frontend separately:
+
+```bash
+cd backend
+npm install
+npm run dev
 ## Security
 
 - Passwords hashed with bcrypt (cost factor 12) — never stored in plain text
